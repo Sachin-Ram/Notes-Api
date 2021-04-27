@@ -1,12 +1,14 @@
 RewriteBase /
 RewriteEngine On
 
-RewriteCond %{REQUEST_FILENAME} !-d
-RewriteCond %{REQUEST_FILENAME} !-s
-RewriteRule ^(.*)$ api/index.php?rquest=$1 [QSA,NC,L]
+RewriteRule ^/?api/([^/]+)?$ api/index.php?rquest=$1 [QSA,NC,L]
 
-RewriteCond %{REQUEST_FILENAME} -d
-RewriteRule ^(.*)$ api/index.php [QSA,NC,L]
+## For general files, if not above, just remove .php
 
-RewriteCond %{REQUEST_FILENAME} -s
-RewriteRule ^(.*)$ api/index.php [QSA,NC,L]
+# Redirect external .php requests to 404 Error (Pretending that I am not doing PHP)
+RewriteCond %{THE_REQUEST} ^(.+)\.php([#?][^\ ]*)?\ HTTP/
+RewriteRule ^(.+)\.php$ "http://%{HTTP_HOST}/$1" [R=404,L]
+
+# Resolve .php file for extensionless php urls
+RewriteCond %{REQUEST_FILENAME}\.php -f
+RewriteRule ^([^/.]+)$ $1.php [L]

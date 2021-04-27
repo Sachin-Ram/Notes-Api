@@ -56,41 +56,53 @@
                 $error = $this->json($error);
                 $this->response($error,406);
             }
-            $data = array('version' => '0.1', 'desc' => 'This API is created by Blovia Technologies Pvt. Ltd., for the public usage for accessing data about vehicles.');
+            $data = array('version' => $this->_request['version'], 'desc' => 'This API is created by Blovia Technologies Pvt. Ltd., for the public usage for accessing data about vehicles.');
             $data = $this->json($data);
             $this->response($data,200);
 
         }
 
         private function verify(){
-            $user = $this->_request['user'];
-            $password =  $this->_request['pass'];
+            if($this->get_request_method() == "POST" and isset($this->_request['user']) and isset($this->_request['pass'])){
+                $user = $this->_request['user'];
+                $password =  $this->_request['pass'];
 
-            $flag = 0;
-            if($user == "admin"){
-                if($password == "adminpass123"){
-                    $flag = 1;
+                $flag = 0;
+                if($user == "admin"){
+                    if($password == "adminpass123"){
+                        $flag = 1;
+                    }
                 }
-            }
 
-            if($flag == 1){
-                $data = [
-                    "status" => "verified"
-                ];
-                $data = $this->json($data);
-                $this->response($data,200);
+                if($flag == 1){
+                    $data = [
+                        "status" => "verified"
+                    ];
+                    $data = $this->json($data);
+                    $this->response($data,200);
+                } else {
+                    $data = [
+                        "status" => "unauthorized"
+                    ];
+                    $data = $this->json($data);
+                    $this->response($data,401);
+                }
             } else {
                 $data = [
-                    "status" => "unauthorized"
-                ];
-                $data = $this->json($data);
-                $this->response($data,403);
+                        "status" => "bad_request"
+                    ];
+                    $data = $this->json($data);
+                    $this->response($data,400);
             }
         }
 
         private function test(){
                 $data = $this->json(getallheaders());
                 $this->response($data,200);
+        }
+
+        private function request_info(){
+            $data = $this->json($_SERVER);
         }
 
         function generate_hash(){

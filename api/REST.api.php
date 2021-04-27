@@ -76,10 +76,11 @@
         private function inputs(){
             switch($this->get_request_method()){
                 case "POST":
-                    $this->_request = $this->cleanInputs($_POST);
+                    //$this->_request = $this->cleanInputs($_POST);
+                    $this->_request =  $this->cleanInputs(array_merge($_GET,$_POST));
                     break;
                 case "GET":
-                    //break;
+                    $this->_request = $this->cleanInputs($_GET);
                 case "DELETE":
                     $this->_request = $this->cleanInputs($_GET);
                     break;
