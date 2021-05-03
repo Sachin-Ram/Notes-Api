@@ -22,7 +22,8 @@ class Signup {
     }
 
     public function hashPassword(){
-        return password_hash($this->$password, PASSWORD_BCRYPT);
+        //echo $this->password;
+        return password_hash($this->password, PASSWORD_BCRYPT);
     }
 
 }

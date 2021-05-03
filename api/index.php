@@ -97,8 +97,10 @@
                 $hash = $s->hashPassword();
                 $data = [
                     "hash" => $hash,
+                    "info" => password_get_info($hash),
                     "val" => $this->_request['pass'],
-                    "verify" => password_verify($this->_request['pass'], $hash)
+                    "verify" => password_verify($this->_request['pass'], $hash),
+                    "spot_verify" => password_verify($this->_request['pass'], password_hash($this->_request['pass'], PASSWORD_BCRYPT))
                 ];
                 $data = $this->json($data);
                 $this->response($data,200);
