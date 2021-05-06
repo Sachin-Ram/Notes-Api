@@ -1,4 +1,5 @@
 <?php
+    require_once($_SERVER['DOCUMENT_ROOT']."/api/lib/Database.class.php");
     class REST {
 
         public $_allow = array();
@@ -103,6 +104,7 @@
             }else{
                 $data = trim(stripslashes($data));
                 $data = strip_tags($data);
+                $data = mysqli_real_escape_string(Database::getConnection(), $data);
                 $clean_input = trim($data);
             }
             return $clean_input;

@@ -1,8 +1,9 @@
 <?php
 
 require_once $_SERVER['DOCUMENT_ROOT'].'/api/lib/Signup.class.php';
+require_once($_SERVER['DOCUMENT_ROOT']."/api/lib/Database.class.php");
 
-$token = $_GET['token'];
+$token = mysqli_real_escape_string(Database::getConnection(), $_GET['token']);
 try{
     if(Signup::verifyAccount($token)){
         ?>
