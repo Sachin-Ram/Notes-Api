@@ -17,7 +17,7 @@ try{
 }
 catch(Exception $e){
     ?>
-    <h1 style="color: orange">Already Verified</h1>
+    <h1 style="color: orange"><?=$e->getMessage()?></h1>
     <?php
 }
 

@@ -52,7 +52,10 @@ class API extends REST {
         $st = microtime(true);
         if(isset($this->_request['pass'])){
             $cost = (int)$this->_request['cost'];
-            $hash = password_hash($this->_request['pass'], PASSWORD_BCRYPT);
+            $options = [
+                "cost" => $cost
+            ];
+            $hash = password_hash($this->_request['pass'], PASSWORD_BCRYPT, $options);
             $data = [
                 "hash" => $hash,
                 "info" => password_get_info($hash),
