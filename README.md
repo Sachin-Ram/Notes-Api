@@ -11,7 +11,8 @@ Right outside the document root, create a file called `env.json` and keep the co
 	"database": "apis",
 	"username": "root",
 	"password": "password",
-	"server": "localhost"
+	"server": "localhost",
+	"email_api_key": "Your_Sendgrid_Key"
 }
 ```
 

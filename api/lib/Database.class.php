@@ -3,7 +3,7 @@
 class Database {
     static $db;
     public static function getConnection(){
-        $config_json = file_get_contents('../../env.json');
+        $config_json = file_get_contents($_SERVER['DOCUMENT_ROOT'].'/../env.json');
         $config = json_decode($config_json, true);
         if (Database::$db != NULL) {
             return Database::$db;
