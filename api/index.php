@@ -27,6 +27,10 @@ class API extends REST {
         else
         $this->response('',400);                // If the method not exist with in this class, response would be "Page not found".
     }
+
+    public function __call($method, $args){
+        
+    }
     
     /*************API SPACE START*******************/
     
