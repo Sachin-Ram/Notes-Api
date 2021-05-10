@@ -20,10 +20,9 @@ class Superhero {
         }
         $dir = __DIR__.'/api/apis';
         $methods = scandir($dir);
-
+        var_dump($methods);
         foreach($methods as $m){
             if($m == "." or $m == ".."){
-                echo $m;
                 continue;
             }
             $basem = basename($m, '.php');
