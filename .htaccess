@@ -1,8 +1,8 @@
-RewriteBase /
 RewriteEngine On
+RewriteBase /
 
-RewriteRule ^/?api/([^/]+)?$ api/index.php?rquest=$1 [QSA,NC,L]
-RewriteRule ^/?api/([^/]+)/([^/]+)?$ api/index.php?rquest=$2&namespace=$1 [QSA,NC,L]
+RewriteRule ^/?api/([^/]+)?$ api/index.php?rquest=$1 [L,QSA,NC]
+RewriteRule ^/?api/([^/]+)/([^/]+)?$ api/index.php?rquest=$2&namespace=$1 [L,QSA,NC]
 
 
 ## For general files, if not above, just remove .php

@@ -49,6 +49,8 @@ $hero = new Superhero("Batman");
 echo $hero->getName()."\n";
 echo $hero->get_powers();
 
+var_dump($_SERVER);
+
 
 ?>
 </pre>
