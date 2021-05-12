@@ -106,5 +106,12 @@ Bye
 
 ```
 
-Now update the `env.json` file with the user and database info created.
+5. Now fix the file permissions for `/var/www` folder like you own it. The below command will change the owner of the foler /var/www as you, so that no errors will come when you try to edit or create.
+
+```
+$ cd /var
+$ sudo chown -R ${whoami}:${whoami} www
+```
+
+Now update the `env.json` file with the user and database info created. All set, your code should be accessible at http://localhost
 
