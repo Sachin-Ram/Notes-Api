@@ -19,3 +19,29 @@ Right outside the document root, create a file called `env.json` and keep the co
 This will be called by the API functions to get the database connection. 
 
 This project is under development.
+
+#### Virtual Host Apache Configuration:
+
+```
+<VirtualHost *:80>
+    ServerAdmin hello@sibidharan.me       
+    DocumentRoot "/var/www/api-development-course-apr-2021"
+    ServerName api1.selfmade.ninja 
+
+        ErrorLog ${APACHE_LOG_DIR}/error.log
+        CustomLog ${APACHE_LOG_DIR}/access.log combined
+
+    <Directory "/var/www/api-development-course-apr-2021">
+            Options Indexes FollowSymLinks ExecCGI Includes
+            AllowOverride All
+            Require all granted
+    </Directory>
+
+# Added automatically by LetsEncrypt
+RewriteEngine on
+RewriteCond %{SERVER_NAME} =api1.selfmade.ninja
+RewriteRule ^ https://%{SERVER_NAME}%{REQUEST_URI} [END,NE,R=307]
+</VirtualHost>
+
+```
+

@@ -63,7 +63,7 @@ class API extends REST {
     private function about(){
         
         if($this->get_request_method() != "POST"){
-            $error = array('status' => 'WRONG_CALL', "msg" => "The type of call cannot be accepted by our servers.");
+            $error = array('method'=> $this->get_request_method(), 'status' => 'WRONG_CALL', "msg" => "The type of call cannot be accepted by our servers.");
             $error = $this->json($error);
             $this->response($error,406);
         }
@@ -111,10 +111,6 @@ class API extends REST {
             $this->response($data,200);
         }
     }
-    
-    
-    
-    
     /*************API SPACE END*********************/
     
     /*
