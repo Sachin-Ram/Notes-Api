@@ -59,7 +59,7 @@ $ sudo apt update && sudo apt -y upgrade
 2. Install Apache, MySQL and PHP
 
 ```
-$ sudo apt install apache2 libapache2-php-mod mysql-server php-mysql
+$ sudo apt install apache2 libapache2-mod-php mysql-server php-mysql
 ```
 
 3. Secure MySQL Database
