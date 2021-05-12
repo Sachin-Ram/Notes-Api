@@ -45,3 +45,66 @@ RewriteRule ^ https://%{SERVER_NAME}%{REQUEST_URI} [END,NE,R=307]
 
 ```
 
+#### Configuring your own Ubuntu Setup
+
+Reference: https://www.digitalocean.com/community/tutorials/how-to-install-linux-apache-mysql-php-lamp-stack-on-ubuntu-20-04
+
+
+1. Update and upgrade the system first.
+
+```
+$ sudo apt update && sudo apt -y upgrade
+```
+
+2. Install Apache, MySQL and PHP
+
+```
+$ sudo apt install apache2 libapache2-php-mod mysql-server php-mysql
+```
+
+3. Secure MySQL Database
+
+```
+$ sudo mysql_secure_installation
+```
+
+and follow the onscreen steps. For more info, check the above link.
+
+4. Create a Database 
+
+```
+$ mysql -u root -p
+Password:
+```
+
+Enter the password you have given for root during `mysql_secure_installation` and you can see the following promot.
+
+```
+mysql>
+```
+
+From here, we need to create a database called `apis`.
+
+```
+mysql> CREATE DATABASE apis;
+```
+
+We also need to create a mysql username and password and give the database previleges for the database we created.
+
+```
+mysql> CREATE USER 'apiuser'@'localhost' IDENTIFIED BY 'password';
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> GRANT ALL PRIVILEGES ON * . * TO 'apiuser'@'localhost';
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> FLUSH PRIVILEGES;
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> exit
+Bye
+
+```
+
+Now update the `env.json` file with the user and database info created.
+
