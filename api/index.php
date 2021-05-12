@@ -67,7 +67,7 @@ class API extends REST {
             $error = $this->json($error);
             $this->response($error,406);
         }
-        $data = array('version' => $this->_request['version'], 'desc' => 'This API is created by Blovia Technologies Pvt. Ltd., for the public usage for accessing data about vehicles.');
+        $data = array('method'=> $this->get_request_method(),'version' => $this->_request['version'], 'desc' => 'This API is created by Blovia Technologies Pvt. Ltd., for the public usage for accessing data about vehicles.');
         $data = $this->json($data);
         $this->response($data,200);
         
