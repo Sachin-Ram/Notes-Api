@@ -1,4 +1,4 @@
-<h2>Something</h2><pre><?php
+<pre><?php
 
 class Superhero {
     public function __construct($name){
