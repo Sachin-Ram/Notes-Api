@@ -45,6 +45,8 @@ RewriteRule ^ https://%{SERVER_NAME}%{REQUEST_URI} [END,NE,R=307]
 
 ```
 
+In the above configuration, `env.json` should sit exactly `/var/www/env.json` here.
+
 #### Configuring your own Ubuntu Setup
 
 Reference: https://www.digitalocean.com/community/tutorials/how-to-install-linux-apache-mysql-php-lamp-stack-on-ubuntu-20-04
@@ -110,7 +112,7 @@ Bye
 
 ```
 $ cd /var
-$ sudo chown -R ${whoami}:${whoami} www
+$ sudo chown $(whoami):$(whoami) -R www
 ```
 
 Now update the `env.json` file with the user and database info created. All set, your code should be accessible at http://localhost
