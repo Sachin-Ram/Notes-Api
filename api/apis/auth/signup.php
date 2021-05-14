@@ -22,11 +22,7 @@ ${basename(__FILE__, '.php')} = function(){
          
     } else {
         $data = [
-            "error" => "Bad request",
-            "method" => $this->get_request_method(),
-            "server" => $_SERVER,
-            "post" => $_POST,
-            "get" => $_GET
+            "error" => "Bad request"
         ];
         $data = $this->json($data);
         $this->response($data, 400);

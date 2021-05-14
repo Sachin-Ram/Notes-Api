@@ -3,6 +3,8 @@ error_reporting(E_ALL ^ E_DEPRECATED);
 require_once($_SERVER['DOCUMENT_ROOT']."/api/REST.api.php");
 require_once($_SERVER['DOCUMENT_ROOT']."/api/lib/Database.class.php");
 require_once($_SERVER['DOCUMENT_ROOT']."/api/lib/Signup.class.php");
+require_once($_SERVER['DOCUMENT_ROOT']."/api/lib/User.class.php");
+require_once($_SERVER['DOCUMENT_ROOT']."/api/lib/Auth.class.php");
 
 class API extends REST {
     
