@@ -2,13 +2,14 @@
 
 require_once($_SERVER['DOCUMENT_ROOT'].'/api/lib/Database.class.php');
 require_once($_SERVER['DOCUMENT_ROOT'].'/api/lib/User.class.php');
+require_once($_SERVER['DOCUMENT_ROOT'].'/api/lib/OAuth.class.php');
 require $_SERVER['DOCUMENT_ROOT'].'/vendor/autoload.php';
 
 class Auth {
 
     private $db;
     private $isTokenAuth = false;
-    private $loginToken = null;
+    private $loginTokens = null;
 
     public function __construct($username, $password = NULL){
         $this->db = Database::getConnection();
@@ -32,26 +33,21 @@ class Auth {
                 if(!$user->isActive()){
                     throw new Exception("Please check your email and activate your account.");
                 }
-                $this->loginToken = $this->addSession();
+                $this->loginTokens = $this->addSession();
             } else {
                 throw new Exception("Password Mismatch");
             }
         }
     }
 
-    public function getAuthToken(){
-        return $this->loginToken;
+    public function getAuthTokens(){
+        return $this->loginTokens;
     }
 
     private function addSession(){
-        $token = Auth::generateRandomHash(32);
-        $query = "INSERT INTO `apis`.`session` (`username`, `token`) VALUES ('$this->username', '$token');";
-        if(mysqli_query($this->db, $query)){
-            return $token;
-        } else {
-            throw new Exception(mysqli_error($this->db));
-        }
-        
+        $oauth = new OAuth($this->username);
+        $session = $oauth->newSession();
+        return $session;
     }
 
     public static function generateRandomHash($len){

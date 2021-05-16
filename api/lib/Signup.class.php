@@ -26,7 +26,7 @@ class Signup {
         //Homework - make a proper flow to throw username already exists
         $query = "INSERT INTO `apis`.`auth` (`username`, `password`, `email`, `active`, `token`) VALUES ('$username', '$password', '$email', 0, '$token');";
         if(!mysqli_query($this->db, $query)){
-            throw new Exception("Unable to signup.");
+            throw new Exception("Unable to signup, user account might already exist.");
         } else {
             $this->id = mysqli_insert_id($this->db);
             $this->sendVerificationMail();
