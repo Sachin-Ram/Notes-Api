@@ -1,6 +1,7 @@
 <?php
 
 require_once($_SERVER['DOCUMENT_ROOT'].'/api/lib/Database.class.php');
+require_once($_SERVER['DOCUMENT_ROOT'].'/api/lib/Folder.class.php');
 require $_SERVER['DOCUMENT_ROOT'].'/vendor/autoload.php';
 //TODO Homework: find why ../vendor? it is the same reason why we use ../../env.json in config.
 
@@ -30,6 +31,8 @@ class Signup {
         } else {
             $this->id = mysqli_insert_id($this->db);
             $this->sendVerificationMail();
+            $f = new Folder();
+            $f->createNew('Default Folder');
         }
     }
     

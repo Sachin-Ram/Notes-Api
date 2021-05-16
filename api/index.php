@@ -5,6 +5,8 @@ require_once($_SERVER['DOCUMENT_ROOT']."/api/lib/Database.class.php");
 require_once($_SERVER['DOCUMENT_ROOT']."/api/lib/Signup.class.php");
 require_once($_SERVER['DOCUMENT_ROOT']."/api/lib/User.class.php");
 require_once($_SERVER['DOCUMENT_ROOT']."/api/lib/Auth.class.php");
+require_once($_SERVER['DOCUMENT_ROOT']."/api/lib/Notes.class.php");
+require_once($_SERVER['DOCUMENT_ROOT']."/api/lib/Folder.class.php");
 
 class API extends REST {
     
@@ -105,19 +107,6 @@ class API extends REST {
     }
     
     /*************API SPACE START*******************/
-    
-    private function about(){
-        
-        if($this->get_request_method() != "POST"){
-            $error = array('method'=> $this->get_request_method(), 'status' => 'WRONG_CALL', "msg" => "The type of call cannot be accepted by our servers.");
-            $error = $this->json($error);
-            $this->response($error,406);
-        }
-        $data = array('method'=> $this->get_request_method(),'version' => $this->_request['version'], 'desc' => 'This API is created by Blovia Technologies Pvt. Ltd., for the public usage for accessing data about vehicles.');
-        $data = $this->json($data);
-        $this->response($data,200);
-        
-    }
     
     private function test(){
         $data = $this->json(getallheaders());
