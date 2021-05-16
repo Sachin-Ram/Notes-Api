@@ -46,10 +46,15 @@ class Superhero {
 }
 
 $hero = new Superhero("Batman");
+echo date_default_timezone_get();
+echo date("Y-m-d h:i:s a", time());
 echo $hero->getName()."\n";
 echo $hero->get_powers();
+//session_start();
+$_SESSION['hello'] = 'world';
+print_r($_SESSION);
 
-var_dump($_SERVER);
+//var_dump($_SERVER);
 
 
 ?>

@@ -12,6 +12,7 @@ class API extends REST {
     
     private $db = NULL;
     private $current_call;
+    private $auth = null;
     
     public function __construct(){
         parent::__construct();                  // Init parent contructor
@@ -31,25 +32,68 @@ class API extends REST {
         else {
             if(isset($_GET['namespace'])){
                 $dir = $_SERVER['DOCUMENT_ROOT'].'/api/apis/'.$_GET['namespace'];
-                $methods = scandir($dir);
-                //var_dump($methods);
-                foreach($methods as $m){
-                    if($m == "." or $m == ".."){
-                        continue;
-                    }
-                    $basem = basename($m, '.php');
-                    //echo "Trying to call $basem() for $func()\n";
-                    if($basem == $func){
-                        include $dir."/".$m;
-                        $this->current_call = Closure::bind(${$basem}, $this, get_class());
-                        $this->$basem();
-                    }
+                $file = $dir.'/'.$func.'.php';
+                if(file_exists($file)){
+                    include $file;
+                    $this->current_call = Closure::bind(${$func}, $this, get_class());
+                    $this->$func();
+                } else {
+                    $this->response($this->json(['error'=>'method_not_found']),404);
                 }
+
+                /** 
+                 * Use the following snippet if you want to include multiple files
+                 */
+                // $methods = scandir($dir);
+                // //var_dump($methods);
+                // foreach($methods as $m){
+                //     if($m == "." or $m == ".."){
+                //         continue;
+                //     }
+                //     $basem = basename($m, '.php');
+                //     //echo "Trying to call $basem() for $func()\n";
+                //     if($basem == $func){
+                //         include $dir."/".$m;
+                //         $this->current_call = Closure::bind(${$basem}, $this, get_class());
+                //         $this->$basem();
+                //     }
+                // }
             } else {
                 //we can even process functions without namespace here.
-                $this->response($this->json(['error'=>'methood_not_found']),404);
+                $this->response($this->json(['error'=>'method_not_found']),404);
             }
         }
+    }
+
+    public function auth(){
+        $headers = getallheaders();
+        if(isset($headers['Authorization'])){
+            $token = explode(' ', $headers['Authorization']);
+            $this->auth = new Auth($token[1]);
+        }
+    }
+
+    public function isAuthenticated(){
+        if($this->auth == null){
+            return false;
+        }
+        if($this->auth->getOAuth()->authenticate() and isset($_SESSION['username'])){
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public function getUsername(){
+        return $_SESSION['username'];
+    }
+
+    public function die($e){
+        $data = [
+            "error" => $e->getMessage()
+        ];
+        $data = $this->json($data);
+        $this->response($data,400);
     }
 
     public function __call($method, $args){
@@ -131,5 +175,11 @@ class API extends REST {
 // Initiiate Library
 
 $api = new API;
-$api->processApi();
+try {
+    $api->auth();
+    $api->processApi();
+} catch (Exception $e){
+    $api->die($e);
+}
+
 ?>

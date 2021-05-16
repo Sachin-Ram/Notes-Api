@@ -10,6 +10,7 @@ class Auth {
     private $db;
     private $isTokenAuth = false;
     private $loginTokens = null;
+    private $oauth;
 
     public function __construct($username, $password = NULL){
         $this->db = Database::getConnection();
@@ -24,7 +25,8 @@ class Auth {
         }
 
         if($this->isTokenAuth){
-            throw new Exception("Not Implemented");
+            $this->oauth = new OAuth($this->token);
+            $this->oauth->authenticate();
         } else {
             $user = new User($this->username);
             $hash = $user->getPasswordHash();
@@ -33,11 +35,26 @@ class Auth {
                 if(!$user->isActive()){
                     throw new Exception("Please check your email and activate your account.");
                 }
-                $this->loginTokens = $this->addSession();
+                $this->loginTokens = $this->addSession(7200);
             } else {
                 throw new Exception("Password Mismatch");
             }
         }
+    }
+
+    /**
+     * Returns the username of authenticated user
+     */
+    public function getUsername(){
+        if($this->oauth->authenticate()){
+            return $this->oauth->getUsername();
+        } else {
+            return "a";
+        }
+    }
+
+    public function getOAuth(){
+        return $this->oauth;
     }
 
     public function getAuthTokens(){
@@ -45,7 +62,8 @@ class Auth {
     }
 
     private function addSession(){
-        $oauth = new OAuth($this->username);
+        $oauth = new OAuth();
+        $oauth->setUsername($this->username);
         $session = $oauth->newSession();
         return $session;
     }
