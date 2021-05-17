@@ -36,13 +36,7 @@ This project is under development.
             AllowOverride All
             Require all granted
     </Directory>
-
-# Added automatically by LetsEncrypt
-RewriteEngine on
-RewriteCond %{SERVER_NAME} =api1.selfmade.ninja
-RewriteRule ^ https://%{SERVER_NAME}%{REQUEST_URI} [END,NE,R=307]
 </VirtualHost>
-
 ```
 
 In the above configuration, `env.json` should sit exactly `/var/www/env.json` here.
