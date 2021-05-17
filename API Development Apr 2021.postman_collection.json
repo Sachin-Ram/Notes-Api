@@ -1,0 +1,561 @@
+{
+	"info": {
+		"_postman_id": "d5528f1e-e6ac-4f7d-965a-9fc81825a7fb",
+		"name": "API Development Apr 2021",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Folder",
+			"item": [
+				{
+					"name": "List Folders",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "a.fd99999df21f5ff9d26be0a9e08788f6ee0bf8c61628e161788d73962cf121da",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://api1.selfmade.ninja/api/folder/list",
+							"protocol": "https",
+							"host": [
+								"api1",
+								"selfmade",
+								"ninja"
+							],
+							"path": [
+								"api",
+								"folder",
+								"list"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Notes in Folder",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "a.fd99999df21f5ff9d26be0a9e08788f6ee0bf8c61628e161788d73962cf121da",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "id",
+									"value": "5",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "https://api1.selfmade.ninja/api/folder/get_all_notes",
+							"protocol": "https",
+							"host": [
+								"api1",
+								"selfmade",
+								"ninja"
+							],
+							"path": [
+								"api",
+								"folder",
+								"get_all_notes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "New Folder",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "a.fd99999df21f5ff9d26be0a9e08788f6ee0bf8c61628e161788d73962cf121da",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "Personal Notes",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "https://api1.selfmade.ninja/api/folder/new",
+							"protocol": "https",
+							"host": [
+								"api1",
+								"selfmade",
+								"ninja"
+							],
+							"path": [
+								"api",
+								"folder",
+								"new"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Folder",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "a.3bc2650a4dd2416df5ddaa0957528a210dea83c22109305e554c173fe1a90880",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "id",
+									"value": "2",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "https://api1.selfmade.ninja/api/folder/delete",
+							"protocol": "https",
+							"host": [
+								"api1",
+								"selfmade",
+								"ninja"
+							],
+							"path": [
+								"api",
+								"folder",
+								"delete"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "List",
+			"item": [
+				{
+					"name": "Get Note",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "a.3bc2650a4dd2416df5ddaa0957528a210dea83c22109305e554c173fe1a90880",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "id",
+									"value": "15",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "https://api1.selfmade.ninja/api/notes/get",
+							"protocol": "https",
+							"host": [
+								"api1",
+								"selfmade",
+								"ninja"
+							],
+							"path": [
+								"api",
+								"notes",
+								"get"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "New Note",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "a.3bc2650a4dd2416df5ddaa0957528a210dea83c22109305e554c173fe1a90880",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "title",
+									"value": "New note",
+									"type": "text"
+								},
+								{
+									"key": "body",
+									"value": "new body",
+									"type": "text"
+								},
+								{
+									"key": "folder",
+									"value": "200",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "https://api1.selfmade.ninja/api/notes/new",
+							"protocol": "https",
+							"host": [
+								"api1",
+								"selfmade",
+								"ninja"
+							],
+							"path": [
+								"api",
+								"notes",
+								"new"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Note",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "a.3bc2650a4dd2416df5ddaa0957528a210dea83c22109305e554c173fe1a90880",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "id",
+									"value": "14",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "https://api1.selfmade.ninja/api/notes/delete",
+							"protocol": "https",
+							"host": [
+								"api1",
+								"selfmade",
+								"ninja"
+							],
+							"path": [
+								"api",
+								"notes",
+								"delete"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Edit Note",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "a.3bc2650a4dd2416df5ddaa0957528a210dea83c22109305e554c173fe1a90880",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "id",
+									"value": "14",
+									"type": "text"
+								},
+								{
+									"key": "title",
+									"value": "New Title 2",
+									"type": "text"
+								},
+								{
+									"key": "body",
+									"value": "New Body 1",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "https://api1.selfmade.ninja/api/notes/edit",
+							"protocol": "https",
+							"host": [
+								"api1",
+								"selfmade",
+								"ninja"
+							],
+							"path": [
+								"api",
+								"notes",
+								"edit"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Verify Auth Test",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://api1.selfmade.ninja/api/test",
+					"protocol": "http",
+					"host": [
+						"api1",
+						"selfmade",
+						"ninja"
+					],
+					"path": [
+						"api",
+						"test"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Signup",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "username",
+							"value": "sibi1995",
+							"type": "text"
+						},
+						{
+							"key": "email",
+							"value": "sibidharan@icloud.com",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "Adidas@321",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://api1.selfmade.ninja/api/auth/signup",
+					"protocol": "https",
+					"host": [
+						"api1",
+						"selfmade",
+						"ninja"
+					],
+					"path": [
+						"api",
+						"auth",
+						"signup"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Login",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "username",
+							"value": "sibi1995",
+							"type": "text"
+						},
+						{
+							"key": "email",
+							"value": "sibidharan@icloud.com",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "password",
+							"value": "Adidas@321",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://api1.selfmade.ninja/api/auth/login",
+					"protocol": "https",
+					"host": [
+						"api1",
+						"selfmade",
+						"ninja"
+					],
+					"path": [
+						"api",
+						"auth",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Refresh Access",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "refresh_token",
+							"value": "b0d4dea4685b4b9a47de06fa2bdb3b07705cef2548894455a81b3aab59544684",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://api1.selfmade.ninja/api/auth/refresh",
+					"protocol": "https",
+					"host": [
+						"api1",
+						"selfmade",
+						"ninja"
+					],
+					"path": [
+						"api",
+						"auth",
+						"refresh"
+					],
+					"query": [
+						{
+							"key": "username",
+							"value": "sibi1995",
+							"disabled": true
+						},
+						{
+							"key": "password",
+							"value": "Adidas@321",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Current User",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "a.89bf515cbb06dd83ff6face31a91c1f42993419474f236cc3ec746d89648f907",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "token",
+							"value": "a.89bf515cbb06dd83ff6face31a91c1f42993419474f236cc3ec746d89648f907",
+							"type": "text",
+							"disabled": true
+						}
+					]
+				},
+				"url": {
+					"raw": "https://api1.selfmade.ninja/api/auth/current",
+					"protocol": "https",
+					"host": [
+						"api1",
+						"selfmade",
+						"ninja"
+					],
+					"path": [
+						"api",
+						"auth",
+						"current"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

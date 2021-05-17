@@ -102,9 +102,9 @@
                     $clean_input[$k] = $this->cleanInputs($v);
                 }
             }else{
-                $data = trim(stripslashes($data));
-                $data = strip_tags($data);
                 $data = mysqli_real_escape_string(Database::getConnection(), $data);
+                //$data = trim(stripslashes($data));
+                $data = strip_tags($data);
                 $clean_input = trim($data);
             }
             return $clean_input;
