@@ -103,7 +103,7 @@
                 }
             }else{
                 $data = mysqli_real_escape_string(Database::getConnection(), $data);
-                //$data = trim(stripslashes($data));
+                //$data = trim(stripslashes($data)); //This reverses the effect of mysqli_real_escape_string so dont use this unless you know what you are doing.
                 $data = strip_tags($data);
                 $clean_input = trim($data);
             }

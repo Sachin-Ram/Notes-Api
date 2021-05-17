@@ -24,7 +24,7 @@ class Notes extends Share{
                 $this->data = mysqli_fetch_assoc($result);
                 $this->id = $this->data['id'];
             } else {
-                throw new Exception("Note not found: ".mysqli_error($this->db));
+                throw new Exception("Note not found");
             }
         }
     }
