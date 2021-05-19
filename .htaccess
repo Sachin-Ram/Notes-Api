@@ -1,5 +1,6 @@
 Header add Access-Control-Allow-Origin: *
-
+Header add Access-Control-Allow-Methods: *
+Header add Access-Control-Request-Headers: *
 RewriteEngine On
 RewriteBase /
 
