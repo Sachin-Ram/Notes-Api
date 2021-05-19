@@ -57,7 +57,7 @@ class Folder extends Share{
                 $this->data = mysqli_fetch_assoc($result);
                 $this->id = $this->data['id'];
             } else {
-                throw new Exception("Folder not found: ".mysqli_error($this->db));
+                throw new Exception("Not found");
             }
         }
     }
@@ -75,7 +75,7 @@ class Folder extends Share{
             $this->refresh();
             return $result;
         } else {
-            throw new Exception("Note not loaded");
+            throw new Exception("Not found");
         }
     }
 
@@ -120,10 +120,10 @@ class Folder extends Share{
                 $result = mysqli_query($this->db, $query);
                 return $result;
             } else {
-                throw new Exception("Folder not loaded");
+                throw new Exception("Not found");
             }
         } else {
-            throw new Exception("Unable to delete");
+            throw new Exception("Unauthorized");
         }
     }
 
@@ -137,6 +137,8 @@ class Folder extends Share{
                 $date = $data[$i]['created_at'];
                 $c = new Carbon($date);
                 $data[$i]['created'] = $c->diffForHumans();
+                $f = new Folder($data[$i]['id']);
+                $data[$i]['count'] = $f->countNotes();
             }
             return $data;
         } else {

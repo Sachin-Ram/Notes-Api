@@ -20,11 +20,11 @@ class Notes extends Share{
         if($this->id != null){
             $query = "SELECT * FROM notes WHERE id=$this->id";
             $result = mysqli_query($this->db, $query);
-            if($result){
+            if($result && mysqli_num_rows($result) == 1){
                 $this->data = mysqli_fetch_assoc($result);
                 $this->id = $this->data['id'];
             } else {
-                throw new Exception("Note not found");
+                throw new Exception("Not found");
             }
         }
     }
@@ -80,7 +80,7 @@ class Notes extends Share{
                 $this->refresh();
                 return $result;
             } else {
-                throw new Exception("Note not loaded");
+                throw new Exception("Not found");
             }
         } else {
             throw new Exception("Unauthorized");
@@ -96,7 +96,7 @@ class Notes extends Share{
                 $this->refresh();
                 return $result;
             } else {
-                throw new Exception("Note not loaded");
+                throw new Exception("Not found");
             }
         } else {
             throw new Exception("Unauthorized");
@@ -116,7 +116,7 @@ class Notes extends Share{
                     throw new Exception("Something is not right");
                 }
             } else {
-                throw new Exception("Note not loaded");
+                throw new Exception("Not found");
             }
         } else {
             throw new Exception("Unauthorized");

@@ -94,8 +94,16 @@ class API extends REST {
         $data = [
             "error" => $e->getMessage()
         ];
+        $response_code = 400;
+        if($e->getMessage() == "Expired token" || $e->getMessage() == "Unauthorized"){
+            $response_code = 403;
+        }
+
+        if($e->getMessage() == "Not found"){
+            $response_code = 404;
+        }
         $data = $this->json($data);
-        $this->response($data,400);
+        $this->response($data,$response_code);
     }
 
     public function __call($method, $args){
