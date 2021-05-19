@@ -133,21 +133,25 @@ class Notes extends Share{
                 throw new Exception("Note not loaded");
             }
         } else {
-            throw new Exception("Unauthorized ".$this->getOwner());
+            throw new Exception("Unauthorized ");
         }
     }
     
     public function createNew($title, $body, $folder){
-        new Folder($folder);
-        if(isset($_SESSION['username']) and strlen($title) <= 45){
-            $query = "INSERT INTO `apis`.`notes` (`title`, `body`, `owner`, `folder_id`) VALUES ('$title', '$body', '$_SESSION[username]', '$folder');";
-            if(mysqli_query($this->db, $query)){
-                $this->id = mysqli_insert_id($this->db);
-                $this->refresh();
-                return $this->id;
+        $f = new Folder($folder);
+        if($f->getOwner() == $_SESSION['username']){
+            if(isset($_SESSION['username']) and strlen($title) <= 45){
+                $query = "INSERT INTO `apis`.`notes` (`title`, `body`, `owner`, `folder_id`) VALUES ('$title', '$body', '$_SESSION[username]', '$folder');";
+                if(mysqli_query($this->db, $query)){
+                    $this->id = mysqli_insert_id($this->db);
+                    $this->refresh();
+                    return $this->id;
+                }
+            } else {
+                throw new Exception("Cannot create note");
             }
         } else {
-            throw new Exception("Cannot create note");
+            throw new Exception("Unauthorized");
         }
     }
 }

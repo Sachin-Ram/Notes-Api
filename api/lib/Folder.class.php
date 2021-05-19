@@ -37,15 +37,15 @@ class Folder extends Share{
         }
     }
 
-    public function createNew($name='New Folder'){
-        if(isset($_SESSION['username']) and strlen($name) <= 45){
+    public function createNew($name='Default Folder'){
+        if(isset($_SESSION['username']) and strlen($name) >= 5 and strlen($name) <=45){
             $query = "INSERT INTO `apis`.`folders` (`name`, `owner`) VALUES ('$name', '$_SESSION[username]');";
             if(mysqli_query($this->db, $query)){
                 $this->id = mysqli_insert_id($this->db);
                 return $this->id;
             }
         } else {
-            throw new Exception("Cannot create note");
+            throw new Exception("Cannot create default folderse");
         }
     }
 
@@ -53,8 +53,11 @@ class Folder extends Share{
         if($this->id != null){
             $query = "SELECT * FROM folders WHERE id=$this->id";
             $result = mysqli_query($this->db, $query);
-            if($result){
+            if($result && mysqli_num_rows($result) == 1){
                 $this->data = mysqli_fetch_assoc($result);
+                if($this->getOwner() != $_SESSION['username']){
+                    throw new Exception("Unauthorized");
+                }
                 $this->id = $this->data['id'];
             } else {
                 throw new Exception("Not found");

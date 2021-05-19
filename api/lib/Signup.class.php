@@ -32,6 +32,8 @@ class Signup {
             $this->id = mysqli_insert_id($this->db);
             $this->sendVerificationMail();
             $f = new Folder();
+            session_start();
+            $_SESSION['username'] = $this->username;
             $f->createNew('Default Folder');
         }
     }
