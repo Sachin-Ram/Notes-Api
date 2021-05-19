@@ -22,6 +22,9 @@ class Notes extends Share{
             $result = mysqli_query($this->db, $query);
             if($result && mysqli_num_rows($result) == 1){
                 $this->data = mysqli_fetch_assoc($result);
+                if($this->getOwner() != $_SESSION['username']){
+                    throw new Exception("Unauthorized");
+                }
                 $this->id = $this->data['id'];
             } else {
                 throw new Exception("Not found");
