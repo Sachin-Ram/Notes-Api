@@ -119,5 +119,5 @@ Now update the `env.json` file with the user and database info created. All set,
 
 ### Security
 
-All the data that you get with `$this->_request[]` inside the APIs are secured with `mysqli_real_escape_string` during the API initialization. Look for the function called REST::cleanInputs() inside `api/REST.api.php` and here is where it happens. So this development is considered secured from MySQLi injections. If you access `$_GET` or `$_POST` anywhere else directly without `$this->_request[]`, then you might just need to filter the inputs yourself and make them secure. 
+All the data that you get with `$this->_request[]` inside the APIs are secured with `mysqli_real_escape_string` during the API initialization. Look for the function called `REST::cleanInputs()` inside `api/REST.api.php` and here is where it happens. So this development is considered secured from MySQLi injections. If you access `$_GET` or `$_POST` anywhere else directly without `$this->_request[]`, then you might just need to filter the inputs yourself and make them secure. 
 
