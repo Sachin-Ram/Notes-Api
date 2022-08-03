@@ -2,7 +2,8 @@
 
 To get started, clone this repository to a proper document root. For XAMPP, this is `htdocs`. For private apache setup, its upto you how you configure. 
 
-This code is right now deployed at: https://api1.selfmade.ninja
+This code is right now deployed at: https://api1.selfmade.ninja - (depricated server)
+This code is hosted again in SNA Labs at https://apicourse.selfmade.buzz
 
 API Documentation for the development can be found at the [Wiki Section](https://git.selfmade.ninja/sibidharan/api-development-course-apr-2021/-/wikis/home) of this repo. 
 

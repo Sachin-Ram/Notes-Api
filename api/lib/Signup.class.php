@@ -3,8 +3,7 @@
 require_once($_SERVER['DOCUMENT_ROOT'].'/api/lib/Database.class.php');
 require_once($_SERVER['DOCUMENT_ROOT'].'/api/lib/Folder.class.php');
 require $_SERVER['DOCUMENT_ROOT'].'/vendor/autoload.php';
-$config_json = file_get_contents($_SERVER['DOCUMENT_ROOT'].'/../env.json');
-$config = json_decode($config_json, true);
+
 //TODO Homework: find why ../vendor? it is the same reason why we use ../../env.json in config.
 
 class Signup
