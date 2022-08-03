@@ -83,7 +83,7 @@ Enter the password you have given for root during `mysql_secure_installation` an
 mysql>
 ```
 
-From here, we need to create a database called `apis`.
+From here, we need to create a database called 
 
 ```
 mysql> CREATE DATABASE apis;
